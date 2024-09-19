@@ -30,6 +30,7 @@ SELECT
     SUM(p.amount) AS total_paid
 FROM customer_rental_summary crs
 JOIN payment p ON crs.customer_id = p.customer_id
+JOIN rental r ON crs.customer_id = r.customer_id
 GROUP BY crs.customer_id, crs.customer_name, crs.email;
 
 #Step 3: Create a CTE and the Customer Summary Report
