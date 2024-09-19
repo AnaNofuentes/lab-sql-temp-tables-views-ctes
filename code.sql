@@ -15,7 +15,7 @@ SELECT
     c.email,
     COUNT(r.rental_id) AS rental_count
 FROM customer c
-LEFT JOIN rental r ON c.customer_id = r.customer_id
+JOIN rental r ON c.customer_id = r.customer_id
 GROUP BY c.customer_id, c.first_name, c.last_name, c.email;
 
 #Step 2: Create a Temporary Table
@@ -29,7 +29,7 @@ SELECT
     crs.email,
     SUM(p.amount) AS total_paid
 FROM customer_rental_summary crs
-JOIN payment p ON crs.customer_id = p.customer_id
+JOIN rental p ON crs.customer_id = p.customer_id
 GROUP BY crs.customer_id, crs.customer_name, crs.email;
 
 #Step 3: Create a CTE and the Customer Summary Report
